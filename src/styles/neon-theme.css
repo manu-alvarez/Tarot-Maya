@@ -1,0 +1,161 @@
+/* styles/neon-theme.css - Core neon theme variables and animations */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Neon Palette */
+  --neon-cyan: #00FFFF;
+  --neon-magenta: #FF00FF;
+  --neon-green: #00FF00;
+  --neon-gold: #FFD700;
+  --neon-purple: #9B30FF;
+  --neon-pink: #FF1493;
+  --neon-orange: #FF8C00;
+  --neon-blue: #00BFFF;
+  --neon-red: #FF4500;
+  --neon-silver: #C0C0C0;
+  --neon-dark: #0A0A12;
+  --neon-dark-2: #12121F;
+  --neon-dark-3: #1A1A2E;
+  --neon-bg: #050508;
+  
+  /* Neon Glow */
+  --glow-sm: 0 0 8px;
+  --glow-md: 0 0 20px;
+  --glow-lg: 0 0 40px;
+  --glow-xl: 0 0 60px;
+  
+  /* Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-blur: 20px;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  html, body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--neon-bg);
+    color: #FFFFFF;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .neon-text {
+    color: #FFFFFF;
+    text-shadow: 
+      0 0 5px currentColor,
+      0 0 10px currentColor,
+      0 0 20px currentColor,
+      0 0 40px currentColor;
+  }
+  
+  .neon-box {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(var(--glass-blur));
+    box-shadow: 
+      inset 0 0 20px rgba(255, 255, 255, 0.02),
+      0 0 20px rgba(0, 255, 255, 0.1);
+  }
+  
+  .glow-cyan { color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan); }
+  .glow-magenta { color: var(--neon-magenta); text-shadow: 0 0 10px var(--neon-magenta), 0 0 20px var(--neon-magenta); }
+  .glow-green { color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green); }
+  .glow-gold { color: var(--neon-gold); text-shadow: 0 0 10px var(--neon-gold), 0 0 20px var(--neon-gold); }
+  .glow-purple { color: var(--neon-purple); text-shadow: 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple); }
+  .glow-pink { color: var(--neon-pink); text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink); }
+  .glow-orange { color: var(--neon-orange); text-shadow: 0 0 10px var(--neon-orange), 0 0 20px var(--neon-orange); }
+  
+  .bg-glow-cyan { background: radial-gradient(circle, rgba(0, 255, 255, 0.1), transparent); }
+  .bg-glow-magenta { background: radial-gradient(circle, rgba(255, 0, 255, 0.1), transparent); }
+  .bg-glow-gold { background: radial-gradient(circle, rgba(255, 215, 0, 0.1), transparent); }
+  
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+  }
+  
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: particle-float 3s ease-in-out infinite;
+  }
+  
+  @keyframes particle-float {
+    0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+    50% { transform: translateY(-20px) translateX(10px); opacity: 1; }
+  }
+  
+  @keyframes pulse-neon {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+  }
+  
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes morph-glow {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+  }
+  
+  .animate-slide-up {
+    animation: slide-up 0.6s ease-out forwards;
+  }
+  
+  .animate-pulse-neon {
+    animation: pulse-neon 2s ease-in-out infinite;
+  }
+  
+  .animate-morph-glow {
+    animation: morph-glow 10s linear infinite;
+  }
+  
+  /* Reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .particle,
+    .animate-pulse-neon,
+    .animate-morph-glow {
+      animation: none;
+    }
+    
+    .neon-text {
+      text-shadow: none;
+    }
+  }
+  
+  /* Focus states */
+  :focus-visible {
+    outline: 2px solid var(--neon-cyan);
+    outline-offset: 2px;
+  }
+  
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+   ::-webkit-scrollbar-track {
+    background: var(--neon-dark);
+  }
+   ::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 255, 0.3);
+    border-radius: 4px;
+  }
+   ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 255, 255, 0.5);
+  }
+}

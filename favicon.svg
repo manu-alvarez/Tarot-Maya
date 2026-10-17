@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <radialGradient id="sunGold" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF2A3"/>
+      <stop offset="45%" stop-color="#FFD54F"/>
+      <stop offset="80%" stop-color="#FF9800"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </radialGradient>
+    <radialGradient id="spaceAura" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0b1b36"/>
+      <stop offset="70%" stop-color="#050811"/>
+      <stop offset="100%" stop-color="#030408"/>
+    </radialGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Deep Obsidian Cosmic Backdrop -->
+  <circle cx="64" cy="64" r="62" fill="url(#spaceAura)" stroke="#00E5FF" stroke-width="2.5" opacity="0.95"/>
+  <circle cx="64" cy="64" r="58" fill="none" stroke="#FFD54F" stroke-width="1.5" stroke-dasharray="4 2.5" opacity="0.8"/>
+
+  <!-- Outer Mayan Cardinal Ray Points -->
+  <g fill="url(#sunGold)" filter="url(#glow)">
+    <polygon points="64,10 68,26 60,26"/>
+    <polygon points="64,118 68,102 60,102"/>
+    <polygon points="10,64 26,68 26,60"/>
+    <polygon points="118,64 102,68 102,60"/>
+    <polygon points="26,26 39,33 33,39"/>
+    <polygon points="102,26 95,39 89,33"/>
+    <polygon points="26,102 33,89 39,95"/>
+    <polygon points="102,102 89,95 95,89"/>
+  </g>
+
+  <!-- Middle Glyphic Calendar Ring -->
+  <circle cx="64" cy="64" r="42" fill="none" stroke="#00E5FF" stroke-width="2.5" opacity="0.9"/>
+  <circle cx="64" cy="64" r="34" fill="#081020" stroke="#FFD54F" stroke-width="1.8"/>
+
+  <!-- Mayan Solar Center Core -->
+  <circle cx="64" cy="64" r="23" fill="url(#sunGold)" filter="url(#glow)"/>
+  <circle cx="64" cy="64" r="14" fill="#FFFBEB" opacity="0.9"/>
+  <circle cx="64" cy="64" r="7" fill="#F59E0B"/>
+</svg>
